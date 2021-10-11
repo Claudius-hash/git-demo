@@ -33,8 +33,8 @@ public class BookServiceimpl implements BookService {
         return bookMapper.queryBookById(id);
     }
 
-    public List<Books> queryAllBook() {
-        return bookMapper.queryAllBook();
+    public List<Books> queryAllBook(int id,String name) {
+        return bookMapper.queryAllBook(id,name);
     }
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -26,11 +27,15 @@ public class bookController {
     private BookService bookService;
     //查询全部的书籍，并且返回到一个书籍展示页面
     @RequestMapping("/allbook")
-    private String list(@RequestParam(value = "pn",defaultValue = "1")Integer pn, Model model){
+    private String list(@RequestParam(value = "pn",defaultValue = "1")Integer pn,HttpServletRequest request, Model model){
         //开启分页操作并设置页面最大数据量
         PageHelper.startPage(pn,5);
         //创建查询结果的集合
-        List<Books> list = bookService.queryAllBook();
+
+        String bookid = request.getParameter("getID");
+        String name = request.getParameter("getName");
+        int id = Integer.parseInt(bookid);
+        List<Books> list = bookService.queryAllBook(id,name);
         PageInfo page = new PageInfo(list,5);
         model.addAttribute("pageInfo",page);
         return"allbook";
@@ -70,7 +75,7 @@ public class bookController {
     }
     //跳转到查询书籍的页面
     @RequestMapping("/toqueryBook")
-    public String toqueryBook(int id ,Model model) {
+    public String toqueryBook(@RequestParam("id") int id , Model model) {
         Books books = bookService.queryBookById(id);
         System.out.println(books);
         model.addAttribute("QBook",books );

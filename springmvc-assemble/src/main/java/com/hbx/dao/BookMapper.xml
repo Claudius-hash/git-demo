@@ -31,7 +31,10 @@
 
     <!--查询全部Book-->
     <select id="queryAllBook" resultType="Books">
-        SELECT * from ssmbuild.books  ORDER BY bookID DESC
+        SELECT * from ssmbuild.books where 1=1
+        <if test="id != null and id != ''">and bookID = #{bookID,jdbcType=Integer} </if>
+        <if test="name != null and name != ''">and bookName = #{bookName,jdbcType=VARCHAR} </if>
+        ORDER BY bookID DESC
     </select>
 
 </mapper>

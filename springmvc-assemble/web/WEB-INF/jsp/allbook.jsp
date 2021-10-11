@@ -21,11 +21,11 @@
         var pc = $("#pageCode").val() ;
         location = "${pageContext.request.contextPath}/book/allbook?pn=" + pc;
     }
-    function queryBook() {
-        //获取文本框中的当前id
-        var pc = $("#bookId").val() ;
-        location = "${pageContext.request.contextPath}/book/toqueryBook?id=" + pc;
-    }
+    <%--function queryBook() {--%>
+    <%--    //获取文本框中的当前id--%>
+    <%--    var pc = $("#bookId").val() ;--%>
+    <%--    location = "${pageContext.request.contextPath}/book/toqueryBook?id=" + pc;--%>
+    <%--}--%>
 
 </script>
 <div class="container">
@@ -42,16 +42,27 @@
 
 
 <div class="row">
-    <div class="col-md-9 column">
+    <div class="col-md-6 column">
         <a class="btn btn-primary" href="${pageContext.request.contextPath}/book/toAddBook">新增书籍</a>
     </div>
-    <div class="col">
+    <div class="col-md-3">
         <div class="input-group">
-            <span>输入id</span>
-            <input style="width: 30px" type="text" class="inputPageCode" id="bookId" />
+            <span>输入书名</span>
+            <input style="width: 130px" type="text" class="inputPageCode"  name="getName" />
             <span>查询</span>
             <%--            <div class="input-group-append">--%>
-            <a class="btn btn-primary" href=javascript:queryBook()>确定</a>
+            <%--            <a class="btn btn-primary" href=javascript:queryBook()>确定</a>--%>
+            <input type="submit" value="确定">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="input-group">
+            <span>输入id</span>
+            <input style="width: 130px" type="text" class="inputPageCode" value=" " name="getID" />
+            <span>查询</span>
+            <%--            <div class="input-group-append">--%>
+<%--            <a class="btn btn-primary" href=javascript:queryBook()>确定</a>--%>
+            <input type="submit" value="确定">
         </div>
     </div>
 </div>
@@ -98,7 +109,7 @@
     <div class="col-sm-4">
         <div class="input-group">
             <span>到第</span>
-            <input style="width: 30px" type="text" class="inputPageCode" id="pageCode" />
+            <input style="width: 50px" type="text" class="inputPageCode" id="pageCode" />
             <span>页</span>
             <%--            <div class="input-group-append">--%>
             <a class="btn btn-primary" href=javascript:go()>确定</a>
